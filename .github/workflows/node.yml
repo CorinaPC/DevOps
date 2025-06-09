@@ -1,9 +1,47 @@
-- name: 🧹 Verificar e remover arquivos desnecessários
-  run: |
-    echo "Verificando arquivos indesejados..."
-    if find . -type f \( -name "*.log" -o -name ".DS_Store" \) -print -quit | grep -q .; then
-      echo "Arquivos indesejados encontrados! Finalizando com falha."
-      exit 1
-    else
-      echo "Nenhum arquivo indesejado encontrado."
-    fi
+name: Exploradores DevOps - CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: 🚀 Build e Teste
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔄 Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: 📂 Listar arquivos no repositório
+        run: ls -la
+
+      - name: 📁 Verificar estrutura mínima do projeto
+        run: |
+          for dir in ".github" ".github/workflows" ; do
+            if [ ! -d "$dir" ]; then
+              echo "❌ Diretório obrigatório '$dir' está faltando!"
+              exit 1
+            fi
+          done
+          echo "✅ Estrutura mínima verificada"
+
+      - name: 📄 Verificar markdown (README.md)
+        uses: nosborn/github-action-markdown-cli@v3
+        with:
+          files: README.md
+
+      - name: 🧹 Verificar e remover arquivos desnecessários
+        run: |
+          echo "Verificando arquivos indesejados..."
+          if find . -type f \( -name "*.log" -o -name ".DS_Store" \) -print -quit | grep -q .; then
+            echo "Arquivos indesejados encontrados! Finalizando com falha."
+            exit 1
+          else
+            echo "Nenhum arquivo indesejado encontrado."
+          fi
+
+      - name: ✅ CI Finalizado com sucesso
+        run: echo "Pipeline finalizado com sucesso 🎉"
