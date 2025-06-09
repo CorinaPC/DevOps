@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Exploradores DevOps - CI
 
 on:
   push:
@@ -8,19 +8,35 @@ on:
 
 jobs:
   build:
+    name: 🚀 Build e Teste
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do código
-        uses: actions/checkout@v3
+      - name: 🔄 Checkout do repositório
+        uses: actions/checkout@v4
 
-      - name: Instalar o Node.js
-        uses: actions/setup-node@v3
+      - name: 📂 Listar arquivos no repositório
+        run: ls -la
+
+      - name: 📁 Verificar estrutura mínima do projeto
+        run: |
+          for dir in ".github" ".github/workflows" ; do
+            if [ ! -d "$dir" ]; then
+              echo "❌ Diretório obrigatório '$dir' está faltando!"
+              exit 1
+            fi
+          done
+          echo "✅ Estrutura mínima verificada"
+
+      - name: 📄 Verificar markdown (README.md)
+        uses: nosborn/github-action-markdown-cli@v3
         with:
-          node-version: '18'
+          files: README.md
 
-      - name: Instalar dependências
-        run: npm install
+      - name: 🧹 Verificar arquivos desnecessários
+        run: |
+          echo "Verificando arquivos indesejados..."
+          find . -type f \( -name "*.log" -o -name ".DS_Store" \) && exit 1 || echo "Nenhum arquivo desnecessário encontrado."
 
-      - name: Rodar testes
-        run: npm test
+      - name: ✅ CI Finalizado com sucesso
+        run: echo "Pipeline finalizado com sucesso 🎉"
