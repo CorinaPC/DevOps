@@ -9,7 +9,7 @@ Este projeto foi desenvolvido como parte da atividade prática do grupo **Explor
 
 ## Como usar
 
-1. Clone o repositório: https://github.com/SilneyJr/exploradores-devops.git
+1. Clone o repositório: https://github.com/CorinaPC/DevOps.git
 
 2. Execute o código com Node.js:
 
