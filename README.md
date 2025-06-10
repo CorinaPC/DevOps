@@ -41,6 +41,44 @@ simples: uma calculadora com operações matemáticas e trigonométricas feitas 
 git clone https://github.com/CorinaPC/DevOps
 cd DevOps
 
+## ▶️ Rodar o programa principal
+
+python main.py
+
+## 🧪 Rodar os testes
+
+pip install pytest
+pytest test_app.py
+
+## ⚙️ Integração Contínua com GitHub Actions
+# O projeto possui um pipeline automatizado localizado em:
+
+.github/workflows/python.yml
+
+# Esse workflow executa:
+
+- ✅ Verificação da estrutura mínima do projeto
+
+- ✅ Validação do arquivo README.md
+
+- ✅ Busca por arquivos indesejados (.log, .DS_Store)
+
+- ✅ Execução dos testes com pytest
+
+# A pipeline roda automaticamente a cada push ou pull request para a branch main.
+# 🔗 Veja os resultados na aba Actions
+
+## 📂 Estrutura do Projeto
+
+-  DevOps/
+-  ├── app.py              # Funções matemáticas e trigonométricas
+-  ├── main.py             # Interface para entrada de dados do usuário
+-  ├── test_app.py         # Arquivo com testes unitários
+-  ├── README.md           # Este documento
+-  └── .github/
+-      └── workflows/
+-          └── python.yml  # Workflow do GitHub Actions (CI)
+
 ## 👥 Integrantes do grupo
 
 - Silney Jr.
