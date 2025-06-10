@@ -1,0 +1,71 @@
+name: Exploradores DevOps - CI  # Nome da pipeline que aparece no GitHub Actions
+
+# QUANDO EXECUTAR
+on:
+  push:
+    branches: [ "main" ]  # Sempre que fizer push na branch main
+  pull_request:
+    branches: [ "main" ]  # Sempre que fizer um pull request para a branch main
+
+# DEFINIÇÃO DOS JOBS
+jobs:
+  build-and-test:
+    name: 🚀 Build, Verificações e Testes
+    runs-on: ubuntu-latest  # Usa uma máquina virtual Ubuntu padrão
+
+    steps:
+      # 1️⃣ Baixar o código do repositório
+      - name: 🔄 Checkout do repositório
+        uses: actions/checkout@v4
+
+      # 2️⃣ Ver arquivos no repositório (para debug visual)
+      - name: 📂 Listar arquivos no repositório
+        run: ls -la
+
+      # 3️⃣ Verificar estrutura mínima esperada
+      - name: 📁 Verificar estrutura mínima do projeto
+        run: |
+          for dir in ".github" ".github/workflows" ; do
+            if [ ! -d "$dir" ]; then
+              echo "❌ Diretório obrigatório '$dir' está faltando!"
+              exit 1
+            fi
+          done
+          echo "✅ Estrutura mínima verificada"
+
+      # 4️⃣ Verificar sintaxe do README.md
+      - name: 📄 Verificar markdown (README.md)
+        uses: nosborn/github-action-markdown-cli@v3
+        with:
+          files: README.md
+
+      # 5️⃣ Verificar arquivos indesejados no projeto
+      - name: 🧹 Verificar e remover arquivos desnecessários
+        run: |
+          echo "Verificando arquivos indesejados..."
+          if find . -type f \( -name "*.log" -o -name ".DS_Store" \) -print -quit | grep -q .; then
+            echo "❌ Arquivos indesejados encontrados! Pipeline falhou."
+            exit 1
+          else
+            echo "✅ Nenhum arquivo indesejado encontrado."
+          fi
+
+      # 6️⃣ Instalar o Python (versão 3.10, por exemplo)
+      - name: 🐍 Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      # 7️⃣ Instalar dependências do projeto (pytest)
+      - name: 📦 Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+
+      # 8️⃣ Executar os testes com pytest
+      - name: 🧪 Rodar testes com pytest
+        run: pytest
+
+      # 9️⃣ Finalização com sucesso
+      - name: ✅ CI Finalizado com sucesso
+        run: echo "🎉 Pipeline finalizada com sucesso!"
