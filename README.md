@@ -1,24 +1,42 @@
-# 📟 Calculadora Simples em Node.js
+# 📟 Calculadora DevOps em Python
 
-Este projeto foi desenvolvido como parte da atividade prática do grupo
-**Exploradores DevOps**. Criamos uma calculadora com operações matemáticas e trigonométricas usando app.py e test_app, com foco
-em aplicar e demonstrar o uso do GitHub Actions em um projeto real.
+Este projeto foi desenvolvido como parte da atividade prática do grupo **Exploradores DevOps** na disciplina de **Engenharia de Software**.  
+O objetivo é aplicar o uso de **CI/CD com GitHub Actions** em um projeto real e simples: uma calculadora com operações matemáticas e trigonométricas feitas em **Python**.
+
+---
 
 ## ✨ Funcionalidades
 
-- Operações entre dois números.
-- Operações matemáticas: somar, subtrair, multiplicacao, divisao, raiz_quadrada, potencia
-- Operações trigonométricas: seno, tangente, cosseno
-- Interface via terminal com entrada do usuário.
+- ✅ Operações matemáticas:
+  - Soma
+  - Subtração
+  - Multiplicação
+  - Divisão
+  - Raiz quadrada
+  - Potência
+- ✅ Operações trigonométricas:
+  - Seno
+  - Cosseno
+  - Tangente
+- ✅ Interface de terminal (`main.py`)
+- ✅ Testes automatizados com `pytest`
+- ✅ Integração Contínua com **GitHub Actions** (`python.yml`)
 
-## ▶️ Como usar
+---
 
-Clone o repositório:
+## ▶️ Como executar o projeto localmente
+
+### 🔧 Pré-requisitos
+
+- Python 3 instalado
+- Git
+- Recomendado: ambiente virtual
+
+### 📥 Clonar o repositório
 
 ```bash
 git clone https://github.com/CorinaPC/DevOps
 cd DevOps
-python test_app.py
 
 ## 👥 Integrantes do grupo
 
