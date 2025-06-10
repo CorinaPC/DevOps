@@ -1,7 +1,10 @@
 # 📟 Calculadora DevOps em Python
 
-Este projeto foi desenvolvido como parte da atividade prática do grupo **Exploradores DevOps** na disciplina de **Engenharia de Software**.  
-O objetivo é aplicar o uso de **CI/CD com GitHub Actions** em um projeto real e simples: uma calculadora com operações matemáticas e trigonométricas feitas em **Python**.
+Este projeto foi desenvolvido como parte da atividade prática do grupo
+**Exploradores DevOps** na disciplina de **Engenharia de Software**.  
+O objetivo é aplicar o uso de **CI/CD com GitHub Actions** em um projeto real e
+simples: uma calculadora com operações matemáticas e trigonométricas feitas em
+**Python**.
 
 ---
 
